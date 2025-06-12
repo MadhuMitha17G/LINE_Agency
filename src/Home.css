@@ -1,0 +1,385 @@
+/* Base Styles */
+:root {
+
+  --secondary: #FF6B00;
+  --accent: #FF8C00;
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+}
+.home-container {
+  min-height: 100vh;
+  height: 100%;
+  color: var(--text);
+font-family: var(--font-primary);
+  position: relative;
+  overflow: hidden;
+  /* background-image and other related styles removed */
+}
+
+
+/* Floating Logo */
+.floating-logo { 
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+.logo-img {
+  height: 120px;
+  width: auto;
+}
+
+.logo-img:hover {
+  transform: scale(1.1);
+}
+
+.content-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;           /* vertical center */
+  justify-content: center;       /* horizontal center */
+  padding: 0 10vw;               /* some horizontal padding */
+  padding: 0 20px;
+  min-height: 100vh; /* Each section takes full viewport height */
+  overflow: hidden;
+  margin-bottom: -30px;
+}
+.content-right {
+  max-width: 800px;
+  width: 80vw;
+  color: white;
+  text-align: justify;
+  padding: 30px;
+  border-radius: 10px;
+  margin : 0 auto;
+  border-radius: 10px;
+}
+
+.first-section {
+  padding-top: 0 !important;
+  margin-top: -4cm;/* Pulls content up by 5cm */
+}
+.content-right h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: orange;
+  text-align: center;            /* center the heading */
+}
+
+.content-right p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.content-right .highlight {
+  font-size: 1.4rem;
+  color: var(--text);
+  font-weight: 500;
+}
+.highlight-line {
+  color: #FF6B00;
+  font-weight: bold;
+  margin-top: 20px;
+  
+}
+/* Floating Icons */
+.floating-icons {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 100;
+}
+
+.floating-icons.left {
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.floating-icons.right {
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text);
+  position: relative;
+}
+
+.icon:hover {
+  background: var(--secondary);
+  transform: scale(1.1);
+  color: var(--primary);
+}
+
+/* Tooltip for all icons */
+.icon::after {
+  content: attr(title);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--secondary);
+  color: var(--primary);
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 15px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.icon:hover::after {
+  opacity: 1;
+}
+
+/* Specific for right-side icons */
+.floating-icons.right .icon::after {
+  left: auto;
+  right: 100%;
+  margin-left: 0;
+  margin-right: 15px;
+}
+/* Scrollable Content */
+.scroll-content {
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
+}
+
+
+.content-section {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  position: relative;
+  min-height: 100vh;
+  height: auto;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 80px 0;
+}
+
+/* Letter List Styles */
+.letter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.letter-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.letter {
+  color: var(--secondary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Content Block */
+.content-block p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+/* Scrollable Content */
+.scroll-content {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; 
+  -ms-overflow-style: none; /* IE/Edge */
+  height: auto;
+  overflow-y: visible; /* Let page scroll naturally */
+  width: 100%;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 80px 0
+}
+
+.scroll-content::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+
+
+/* Left-aligned Content */
+.content-left {
+  position: absolute;
+  left: 15%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 500px;
+  position: relative; /* let it flow naturally */
+  margin: 0 auto;
+  padding: 40px;
+}
+
+
+/* Letter List Styles */
+.letter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.letter-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.letter-item:hover {
+  transform: translateX(10px);
+}
+
+.letter-item.active {
+  transform: scale(1.05) translateX(20px);
+}
+
+.letter-item.active .letter {
+  transform: scale(1.5);
+  margin-right: 15px;
+}
+
+.letter {
+  color: var(--secondary);
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.letter-item p {
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.letter-item.active p {
+  font-weight: 500;
+  color: var(--secondary);
+}
+.content-section:first-of-type {
+  padding-bottom: 100px; /* Push the next section down */
+}
+.home-section {
+  padding-bottom: 100px;
+}
+html {
+  scroll-behavior: smooth;
+}
+.floating-icons .icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 107, 0, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.floating-icons .icon:hover {
+  background: rgba(255, 107, 0, 0.4);
+  transform: scale(1.15);
+  box-shadow: 0 10px 20px rgba(255, 107, 0, 0.3);
+}
+/* Why Choose Section Styles */
+/* Why Choose Section - Centered */
+/* Why Choose Section - Vertical Version */
+/* Why Choose Section */
+.why-choose-section {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.creative-header {
+  margin-bottom: 60px;
+}
+
+.creativity-label {
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  color: #FF6B00;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  color: white;
+  margin: 0;
+
+}
+
+.line-highlight {
+  color: #FF6B00;
+  font-weight: 700;
+}
+
+/* Letter Grid Layout */
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.letter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.letter-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255,107,0,0.1);
+  border: 2px solid #FF6B00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #FF6B00;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.letter-item:hover .letter-circle {
+  background: #FF6B00;
+  color: black;
+  transform: scale(1.1);
+}
+
+.letter-description {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 15px;
+}

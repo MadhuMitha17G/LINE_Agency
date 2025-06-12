@@ -1,0 +1,48 @@
+.services-container {
+  position: relative;
+  padding: 100px 10%;
+  min-height: 100vh;
+  background-color: black; /* fallback if no image */
+  color: white;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* dark transparent box inside for content */
+.services-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 12px;
+  z-index: 2;
+  position: relative;
+}
+
+.service-title {
+  font-size: 2rem;
+  color: #FF6B00;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.service-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 30px;
+}
+
+.animated-line {
+  width: 0;
+  height: 4px;
+  background-color: #FF6B00;
+  margin: 20px auto 40px;
+  transition: width 1.5s ease-in-out;
+}
+
+.animate-line {
+  width: 80%;
+}
+
+.fade-in {
+  margin-bottom: 60px;
+}
