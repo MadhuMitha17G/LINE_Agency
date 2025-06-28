@@ -1,64 +1,43 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Services.css";
-import bgImage from "./assets/LINE-BACKGROUND-01.png"; // reuse your background image
+import { useNavigate } from "react-router-dom";
+
+import atlImage from './assets/ATL.png';
+import ttlImage from './assets/TTL.png';
+import btlImage from './assets/BTL.png';
+
+import { StackedCarousel } from './StackedCarousel';
+import './react-card-stack-carousel/styles/styles.css';
 
 const Services = () => {
-  useEffect(() => {
-    const lines = document.querySelectorAll(".animated-line");
-    lines.forEach((line) => {
-      line.classList.add("animate-line");
-    });
-  }, []);
+  const navigate = useNavigate();
+  const imageUrls = [atlImage, ttlImage, btlImage];
 
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${bgImage})`,
-    backgroundSize: "cover",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
+  const handleViewWork = () => {
+    navigate("/our-work");
   };
 
   return (
-    <div className="services-container" style={backgroundStyle}>
-      <div className="services-overlay">
-        {/* ABOVE THE LINE */}
-        <div className="fade-in">
-          <h2 className="service-title">Above the Line</h2>
-          <p className="service-text">
-            • TV Commercials (TVCs) • Radio Advertisements • Cinema Advertising •
-            Print Advertising (Newspapers, Magazines) • Outdoor (OOH) Advertising:
-            Billboards, Hoardings, Transit Ads (Bus, Metro, Auto) • Media Buying &
-            Planning (Traditional Media) • Brand Awareness Campaigns
-          </p>
-          <div className="animated-line" />
-        </div>
+    <div className="services-section">
+      {/* Our Services heading at the top */}
+      <h2 className="section-heading">Our Services</h2>
 
-        {/* THROUGH THE LINE */}
-        <div className="fade-in">
-          <h2 className="service-title">Through the Line</h2>
-          <p className="service-text">
-            • Social Media Marketing (Organic + Paid) • Search Engine Marketing
-            (Google Ads, YouTube Ads) • Display Ads • Programmatic Ads • Email &
-            SMS Campaigns • Influencer Marketing • Content Creation & Reels
-            Production • Performance Marketing Campaigns • CRM & Retargeting
-            Campaigns • Campaign Strategy & Planning • Integrated Campaign
-            Execution (TV + Digital + Ground) • Analytics, Reporting & Optimization
-          </p>
-          <div className="animated-line" />
-        </div>
+      {/* Carousel below heading */}
+      <div className="carousel-wrapper">
+        <StackedCarousel height={300} autoplay>
+          {imageUrls.map((url, index) => (
+            <div key={index} className="image-card">
+              <img src={url} alt={`Slide ${index + 1}`} />
+            </div>
+          ))}
+        </StackedCarousel>
+      </div>
 
-        {/* BELOW THE LINE */}
-        <div className="fade-in">
-          <h2 className="service-title">Below the Line</h2>
-          <p className="service-text">
-            • In-store Promotions • Events & Experiential Marketing • Brand
-            Activations • Roadshows & Canter Promotions • Product Sampling, Mall &
-            Society Activations • Retail Branding • Print Collateral (Brochures,
-            Flyers, Leaflets) • Corporate Gifting & Merchandise • Stall Design &
-            Fabrication (Expos, Trade Shows) • Dealer/Distributor Meet Management
-          </p>
-          <div className="animated-line" />
-        </div>
+      {/* View Work button 1cm below cards */}
+      <div className="view-work-container">
+        <button className="view-button" onClick={handleViewWork}>
+          All Services
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,364 @@
+.works-page {
+  background: #0a0a0a;
+  color: white;
+  min-height: 100vh;
+  padding: 40px 5%;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background: transparent;
+  color: #FF6B00;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.back-button:hover {
+  transform: translateX(-5px);
+}
+
+.services-header {
+  position: relative;
+  margin: 60px 0 40px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
+}
+
+.services-header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.services-header .highlight {
+  color: #FF6B00;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #FF6B00;
+  opacity: 0.3;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.services-header:hover .highlight::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.services-header p {
+  font-size: 1.2rem;
+  color: #CCCCCC;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header-accent {
+  position: absolute;
+  top: -50px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,107,0,0.15) 0%, rgba(255,107,0,0) 70%);
+  z-index: 1;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: rgba(20, 20, 20, 0.8);
+  border-radius: 15px;
+  padding: 30px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  min-height: 200px;
+}
+
+.service-card.hovered {
+  transform: translateY(-10px);
+  background: rgba(30, 30, 30, 0.9);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+}
+
+.service-card.hovered .card-icon {
+  color: #FF6B00;
+  transform: translateY(-5px);
+   transform: translateY(0); 
+}
+
+.card-title-wrapper {
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.service-card h3 {
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card.hovered h3 {
+  color: #FF6B00;
+  transform: translateY(-5px);
+}
+
+.card-underline {
+  width: 50px;
+  height: 2px;
+  background: #FF6B00;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card.hovered .card-underline {
+  transform: scaleX(1);
+}
+
+.card-description {
+  overflow: hidden;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #CCCCCC;
+  line-height: 1.6;
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card.hovered p {
+  color: white; /* Make text brighter on hover */
+  transform: translateY(-3px); /* Slight raise effect */
+}
+
+.card-highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,107,0,0.1) 0%, rgba(255,107,0,0) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-card.hovered .card-highlight {
+  opacity: 1;
+}
+
+.toggle-btn-container {
+  text-align: center;
+  margin: 60px 0 40px;
+}
+
+.toggle-button {
+  background: transparent;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.toggle-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.toggle-button .button-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #FF6B00;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toggle-button:hover {
+  color: #FF6B00;
+}
+
+.toggle-button:hover .button-underline {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (max-width: 768px) {
+  .services-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .services-header p {
+    font-size: 1rem;
+  }
+  
+  .service-card {
+    padding: 25px;
+    min-height: 180px;
+  }
+
+  .card-icon {
+font-size: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+  opacity: 1; 
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .back-button {
+    left: 20px;
+  }
+}
+/* Connect Section Styles */
+.connect-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 80px 0;
+  padding: 0 20px;
+  flex-direction: column;
+}
+
+.connect-line {
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+  opacity: 0.7;
+}
+
+.connect-content {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.connect-content h3 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.connect-content p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* Connect Button */
+.connect-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.connect-button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+}
+
+.connect-button:active {
+  transform: translateY(0);
+}
+
+.connect-arrow {
+  transition: transform 0.3s ease;
+}
+
+.connect-button:hover .connect-arrow {
+  transform: translateX(3px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .connect-content h3 {
+    font-size: 1.6rem;
+  }
+  
+  .connect-content p {
+    font-size: 1rem;
+  }
+  
+  .connect-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

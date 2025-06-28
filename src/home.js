@@ -1,13 +1,17 @@
-import React, { useRef,useState}from "react";
+import { useRef, useState, useEffect } from "react";
 import "./Home.css";
 import Services from "./Services";
 import Teams from "./Teams";
 import Portfolio from "./Portfolio";
-import { FaHome, FaServicestack, FaUsers, FaBriefcase, FaEnvelope } from "react-icons/fa";
-import bgImage from "./assets/LINE-BACKGROUND-01.png";
 import Footer from "./Footer";
-import { motion } from "framer-motion";
 import ContactModal from "./ContactModal";
+import Loader from "./Loader";
+import bgImage from "./assets/LINE-BACKGROUND-01.png";
+import { motion } from "framer-motion";
+import { TypeAnimation } from 'react-type-animation';
+import { FiMenu, FiX } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
   const homeRef = useRef(null);
@@ -15,10 +19,19 @@ const Home = () => {
   const servicesRef = useRef(null);
   const teamsRef = useRef(null);
   const portfolioref = useRef(null);
-  const [showContact, setShowContact] = useState(false);
+ // const [showContact, setShowContact] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const navigate = useNavigate();
 
 
-  ///const [activeLetter, setActiveLetter] = useState(null);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
@@ -39,216 +52,157 @@ const Home = () => {
     backgroundPosition: 'center',
   };
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    }
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const letterVariants = {
-    normal: { scale: 1 },
-    active: { scale: 1.5, color: "#FF8C00" }
-  };
+  if (loading) return <Loader />;
 
   return (
     <div className="home-container" style={backgroundStyle}>
-      {/* Floating Logo */}
-      <motion.div 
-        className="floating-logo"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-      >
-        <img 
-          src="/LINE LOGO-WHITE.png" 
-          alt="LINE Agency Logo" 
-          className="logo-img" 
-        />
-      </motion.div>
+      {/* Header */}
+      <header className="professional-header">
+        <div className="header-left">
+          <img
+            src="/LINE LOGO-WHITE.png"
+            alt="LINE Agency Logo"
+            className="professional-logo"
+          />
+        </div>
+        <div className="menu-toggle" onClick={toggleMenu}>
+          {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+        </div>
+        <nav className={`header-right ${menuOpen ? "open" : ""}`}>
+          <ul>
+            <li onClick={() => scrollToSection(homeRef)}>Home</li>
+            <li onClick={() => scrollToSection(servicesRef)}>Services</li>
+            <li onClick={() => scrollToSection(teamsRef)}>Team</li>
+            <li onClick={() => scrollToSection(portfolioref)}>Work</li>
+             <li onClick={() => navigate("/contact")}>Contact</li>
+          </ul>
+        </nav>
+      </header>
 
-      {/* Floating Icons - Left */}
-      <motion.div 
-        className="floating-icons left"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.7 }}
-      >
-        {[
-          { icon: <FaHome />, title: "Home", ref: homeRef },
-          { icon: <FaServicestack />, title: "Services", ref: servicesRef },
-          { icon: <FaUsers />, title: "Teams", ref: teamsRef },
-          { icon: <FaBriefcase />, title: "Portfolio", ref: portfolioref }
-        ].map((item, index) => (
-          <motion.div
-            key={index}
-            className="icon"
-            title={item.title}
-            onClick={() => scrollToSection(item.ref)}
-            whileHover={{ scale: 1.2, backgroundColor: "rgba(255, 107, 0, 0.4)" }}
-            whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      {/* Hero Section */}
+      <section className="hero-section" ref={homeRef}>
+        <div className="custom-hero-container-left">
+          <motion.h1
+            className="custom-hero-title-left enlarged-hero-text"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            {item.icon}
-          </motion.div>
-        ))}
-      </motion.div>
-      {/* Floating Icons - Right */}
-      <motion.div 
-        className="floating-icons right"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.7 }}
-      >
-    <motion.div
-  className="icon"
-  title="Mail Us"
-  whileHover={{ scale: 1.2, backgroundColor: "rgba(255, 107, 0, 0.4)" }}
-  whileTap={{ scale: 0.9 }}
-  onClick={() => setShowContact(true)} // 💡 open modal
->
-          <FaEnvelope />
-        </motion.div>
-      </motion.div>
+            Let's Draw the Line to
+            <br />
+            Your Brand's{" "}
+            <span className="highlight-animated">
+              <TypeAnimation
+                sequence={[
+                  "Success.",
+                  2000,
+                  "Story.",
+                  2000,
+                  "Strategy.",
+                  2000,
+                  "Growth.",
+                  2000,
+                  "Voice.",
+                  2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                deletionSpeed={60}
+                repeat={Infinity}
+              />
+            </span>
+          </motion.h1>
 
-      {/* Scrollable Sections */}
-      <div className="scroll-content ">
-        {/* Home Section */}
-        <motion.section
-          id="home"
-          className="content-section "
-          ref={homeRef}
-          style={{ paddingBottom: "100px" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          
-          <motion.div 
-            className="content-right"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+          <motion.a
+            href="https://www.instagram.com/reel/DJbjVjDylR1/?igsh=cGg0a29uamZkazly"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="reel-button"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <motion.h1 variants={itemVariants}>Who are we?</motion.h1>
-            <motion.div className="content-block" variants={itemVariants}>
-              <motion.p variants={itemVariants}>
-                We are a future-ready, full-service Integrated Marketing Communications (IMC) agency committed to building powerful 
-                brands for the modern world. Our approach blends strategic insight, compelling storytelling, and flawless execution to create lasting impact.
-              </motion.p>
-               <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
+            <div className="reel-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="white"
+                width="18px"
+                height="18px"
               >
-                We bring together digital, design, content, and media under one unified approach.
-              </motion.p>
-             <motion.p 
-                className="highlight-line"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                WE DRAW THE LINE BETWEEN STRATEGY——CREATIVITY
-              </motion.p>
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+            <span className="reel-text">Watch our reel</span>
+          </motion.a>
+
+          <motion.p
+            className="custom-hero-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+          >
+            <br />
+            <br />
+            We craft meaningful connections between brands and people
+            where strategy meets creativity in every line.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Why Choose Section */}
+      <motion.section className="why-choose-section" ref={whyChooseRef}>
+        <div className="creative-header">
+          <h2 className="section-title">Why choose <span className="line-highlight">LINE</span>?</h2>
+        </div>
+        <div className="letter-grid">
+          {whyChooseContent.map((item, index) => (
+            <motion.div
+              key={index}
+              className="letter-item"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="letter-circle">{item.letter}</div>
+              <p className="letter-description">{item.text}</p>
             </motion.div>
-          </motion.div>
-        </motion.section>
-
-        {/* Why Choose Section */}
-<motion.section 
-  className="why-choose-section" 
-  ref={whyChooseRef}
+          ))}
+        </div>
+      </motion.section>
+      <motion.div className="about-link-wrapper"
   initial={{ opacity: 0 }}
   whileInView={{ opacity: 1 }}
+  transition={{ duration: 0.5 }}
   viewport={{ once: true }}
-  transition={{ duration: 0.8 }}
 >
-  <div className="creative-header">
+  <button className="about-button" onClick={() => navigate("/about")}>Learn More About Us</button>
+</motion.div>
 
-    <motion.h2
-      className="section-title"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-    >
-      Why choose <span className="line-highlight">LINE</span>?
-    </motion.h2>
-  </div>
 
-  <div className="letter-grid">
-    {whyChooseContent.map((item, index) => (
-      <motion.div 
-        key={index}
-        className="letter-item"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 + index * 0.1 }}
-      >
-        <div className="letter-circle">{item.letter}</div>
-        <p className="letter-description">{item.text}</p>
-      </motion.div>
-    ))}
-  </div>
-</motion.section>
+      {/* Services Section */}
+      <motion.section id="services" className="content-section" ref={servicesRef}>
+        <Services />
+      </motion.section>
 
-        {/* Services Section */}
-        <motion.section
-          id="services"
-          className="content-section"
-          ref={servicesRef}
-          style={{ padding: "100px 0" }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-        >
-          <Services />
-        </motion.section>
+      {/* Teams Section */}
+      <motion.section id="teams" className="content-section" ref={teamsRef}>
+        <Teams />
+      </motion.section>
 
-        {/* Teams Section */}
-        <motion.section
-          id="teams"
-          className="content-section"
-          ref={teamsRef}
-          style={{ padding: "100px 0" }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-        >
-          <Teams />
-        </motion.section>
+      {/* Portfolio Section */}
+      <motion.section id="portfolio" className="content-section" ref={portfolioref}>
+        <Portfolio />
+      </motion.section>
 
-        {/* Portfolio Section */}
-        <motion.section
-          id="portfolio"
-          className="content-section"
-          ref={portfolioref}
-          style={{ paddingTop: "120px", minHeight: "30vh", paddingBottom: "100px" }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-        >
-          <Portfolio />
-        </motion.section>
-        
-        <Footer />
-      </div>
-      {showContact && <ContactModal onClose={() => setShowContact(false)} />}
+      {/* Footer */}
+      <Footer />
+
+      {/* Contact Modal */}
+   
     </div>
   );
 };

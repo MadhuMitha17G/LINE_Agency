@@ -1,48 +1,110 @@
-.services-container {
-  position: relative;
-  padding: 100px 10%;
+.services-section {
+  padding: 40px 20px 60px;
   min-height: 100vh;
-  background-color: black; /* fallback if no image */
-  color: white;
-  z-index: 1;
-  overflow: hidden;
-}
-
-/* dark transparent box inside for content */
-.services-overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 40px;
-  border-radius: 12px;
-  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
+
 }
 
-.service-title {
-  font-size: 2rem;
+.section-heading {
+  margin: 0 0 1cm 0;
+  font-size: 2.5rem;
+  color: white;
+    text-align: center;
+  width: 100%;
+}
+
+/* Carousel wrapper */
+.carousel-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Image styling - removed box shadow */
+.image-card img {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Navigation arrows styling - removed shadow and improved hover */
+.react-card-stack-carousel .nav-button {
+  background-color: transparent !important;
+  color: #FF6B00 !important;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  border: 2px solid #FF6B00 !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.react-card-stack-carousel .nav-button:hover {
+  background-color: #FF6B00 !important;
+  color: white !important;
+}
+
+/* View Work button - 1cm below cards */
+.view-work-container {
+  margin-top: 4cm; /* Increased space */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.view-button {
+  background: none;
   color: #FF6B00;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.service-text {
+  padding: 15px 60px;
+  border: 2px solid #FF6B00;
+  border-radius: 8px;
   font-size: 1rem;
-  line-height: 1.6;
-  text-align: justify;
-  margin-bottom: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
 }
 
-.animated-line {
-  width: 0;
-  height: 4px;
-  background-color: #FF6B00;
-  margin: 20px auto 40px;
-  transition: width 1.5s ease-in-out;
+.view-button:hover {
+  background: #FF6B00;
+  color: white;
 }
 
-.animate-line {
-  width: 80%;
+/* Remove focus outlines for cleaner look */
+.view-button:focus,
+.nav-button:focus {
+  outline: none;
 }
 
-.fade-in {
-  margin-bottom: 60px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 2rem;
+    margin-bottom: 0.8cm;
+  }
+  
+  .image-card img {
+    max-height: 40vh;
+  }
+
+  .react-card-stack-carousel .nav-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+  
+  .view-button {
+    padding: 12px 40px;
+  }
 }

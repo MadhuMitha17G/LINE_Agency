@@ -1,0 +1,37 @@
+.rcsc-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    perspective: 90em;
+}
+
+.rcsc-item {
+    position: absolute;
+}
+
+.rcsc-nav-container {
+    position: absolute;
+    bottom: -44px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.rcsc-nav-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 6px;
+    padding: 8px;
+    cursor: pointer;
+    background-color: #374151;
+    transition: background-color 0.3s;
+}
+
+.rcsc-nav-icon:hover {
+    background-color: #1e293b;
+}
