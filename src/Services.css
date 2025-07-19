@@ -1,110 +1,298 @@
 .services-section {
-  padding: 40px 20px 60px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-
+  padding: 4rem 2rem;
+  color: #fff;
+  text-align: center;
+  background: #0a0a0a;
+  overflow-x: hidden;
 }
 
 .section-heading {
-  margin: 0 0 1cm 0;
-  font-size: 2.5rem;
-  color: white;
-    text-align: center;
-  width: 100%;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #FF6B00;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Carousel wrapper */
-.carousel-wrapper {
-  width: 100%;
+.section-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #aaa;
   max-width: 800px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.main-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.main-card {
+  background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  width: 280px;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   position: relative;
-  flex-grow: 1;
+  overflow: hidden;
+}
+
+.main-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #FF6B00;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.main-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  border-color: #FF6B00;
+}
+
+.main-card:hover::before {
+  transform: scaleX(1);
+}
+
+.highlight-card {
+  width: 320px;
+  padding: 3rem 2rem;
+  border: 2px solid #FF6B00;
+  transform: scale(1.05);
+}
+
+.highlight-card:hover {
+  transform: scale(1.08) translateY(-8px);
+}
+
+.card-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-/* Image styling - removed box shadow */
-.image-card img {
-  width: 100%;
-  max-height: 60vh;
-  object-fit: cover;
-  border-radius: 12px;
+.card-abbr {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #FF6B00;
+  margin-bottom: 1rem;
 }
 
-/* Navigation arrows styling - removed shadow and improved hover */
-.react-card-stack-carousel .nav-button {
-  background-color: transparent !important;
-  color: #FF6B00 !important;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  border: 2px solid #FF6B00 !important;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-weight: 600;
 }
 
-.react-card-stack-carousel .nav-button:hover {
-  background-color: #FF6B00 !important;
-  color: white !important;
+.card-description {
+  font-size: 0.95rem;
+  color: #bbb;
+  line-height: 1.4;
 }
 
-/* View Work button - 1cm below cards */
-.view-work-container {
-  margin-top: 4cm; /* Increased space */
+.subcards-section {
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease-out;
+  padding: 0 1rem;
+}
+
+.subcards-heading {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #FF6B00;
+  position: relative;
+  display: inline-block;
+}
+
+.subcards-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: #FF6B00;
+}
+
+.subcards-container {
   display: flex;
-  justify-content: center;
-  width: 100%;
+  overflow-x: auto;
+  gap: 2rem;
+  max-width: 100%;
+  margin: 0 auto;
+  scroll-behavior: smooth;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+  will-change: transform;
 }
 
+.subcards-container::-webkit-scrollbar {
+  display: none;
+}
+
+.subcards-container.grabbing {
+  cursor: grabbing;
+}
+
+.subcard {
+  flex: 0 0 auto;
+  width: 280px;
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 0;
+  text-align: center;
+  transition: transform 0.2s ease-out;
+  user-select: none;
+}
+
+.subcard-img-container {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: translateZ(0);
+}
+
+.subcard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.subcard:hover .subcard-img {
+  transform: scale(1.05);
+}
+
+.subcard-title {
+  margin-top: 0.5rem;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0 0.5rem;
+}
+
+.view-work-container {
+  margin-top: 4rem;
+}
 
 .view-button {
-  background: none;
-  color: #FF6B00;
-  padding: 15px 60px;
-  border: 2px solid #FF6B00;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  background-color: #FF6B00;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-
+  box-shadow: 0 4px 8px rgba(255, 107, 0, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .view-button:hover {
-  background: #FF6B00;
-  color: white;
+  background-color: #e35c00;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 107, 0, 0.4);
 }
 
-/* Remove focus outlines for cleaner look */
-.view-button:focus,
-.nav-button:focus {
-  outline: none;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .subcards-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .subcard {
+    scroll-snap-align: center;
+  }
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .section-heading {
-    font-size: 2rem;
-    margin-bottom: 0.8cm;
+@media (max-width: 1024px) {
+  .main-card {
+    width: 240px;
+    padding: 2rem 1.5rem;
   }
   
-  .image-card img {
-    max-height: 40vh;
+  .highlight-card {
+    width: 260px;
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .card-abbr {
+    font-size: 2.5rem;
   }
 
-  .react-card-stack-carousel .nav-button {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
+  .subcard {
+    width: 220px;
+  }
+
+  .subcard-img-container {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-card, .highlight-card {
+    width: 90%;
+    max-width: 400px;
+    padding: 2.5rem 1.5rem;
+    transform: none !important;
+  }
+
+  .subcard {
+    width: 200px;
+  }
+
+  .subcard-img-container {
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-heading {
+    font-size: 2.2rem;
   }
   
-  .view-button {
-    padding: 12px 40px;
+  .subcard {
+    width: 160px;
+  }
+  
+  .subcard-img-container {
+    height: 140px;
   }
 }

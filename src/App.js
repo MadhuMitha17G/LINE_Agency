@@ -1,29 +1,37 @@
 // App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Home from "./home";
 import Services from "./Services";
 import Works from "./Works";
-import ContactPage from "./ContactModal";  // Add this import
-//import { StackedCarousel } from './StackedCarousel'; // Assuming you are using a local copy of the component
-import './react-card-stack-carousel/styles/styles.css'; // Required styles
-//import LineAnimation from './LineAnimation';
+import ContactPage from "./ContactModal";
 import AboutUs from "./AboutUs";
+import amplitude from "./amplitude"; // add this line
 
-function App() {
- 
+function TrackPageView() {
+  const location = useLocation();
+
+  useEffect(() => {
+    amplitude.track("Page Viewed", { page: location.pathname });
+  }, [location]);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/our-work" element={<Works />} /> {/* Add this route */}
-           <Route path="/contact" element={<ContactPage />} /> {/* new contact route */}
-           <Route path="/about" element={<AboutUs />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/our-work" element={<Works />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about" element={<AboutUs />} />
+    </Routes>
   );
 }
 
+function App() {
+  return (
+    <Router>
+      <TrackPageView />
+    </Router>
+  );
+}
 
 export default App;

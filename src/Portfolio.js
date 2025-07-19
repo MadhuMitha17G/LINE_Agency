@@ -14,75 +14,56 @@ const logos = [
   { image: tales, name: "Tails on Wheels" },
   { image: suvaibox, name: "The Suvai Box" },
   { image: snv, name: "SNV" },
+  // Duplicate logos for seamless looping
+  { image: ggAgarbathie, name: "GG Agarbathie" },
+  { image: mahaveers, name: "Mahaveers" },
+  { image: rayapass, name: "Rayapass" },
+  { image: tales, name: "Tails on Wheels" },
+  { image: suvaibox, name: "The Suvai Box" },
+  { image: snv, name: "SNV" },
 ];
 
 const testimonials = [
   {
-    name: "Usha Rani",
-    company: "Bingen",
-    feedback: "The agency's ability to execute cross-platform campaigns seamlessly has brought us consistent success.",
+    name: "Bharat",
+    feedback: "Line helped me bring my brand to life. They really understood what I wanted and turned it into something that looks and feels amazing. The new look made a big difference — more people noticed us, and engagement shot up. Super easy team to work with!",
     rating: 5
   },
   {
     name: "Arun Kumar",
-    company: "GG Agarbathie",
-    feedback: "Bhogan Mediasoft truly transformed our brand presence.",
+    feedback: "The team at Line just gets it. Our social media used to feel all over the place, but now it’s sharp, fun, and totally us. Our followers are actually paying attention, and our reach has grown like crazy. Couldn’t be happier.",
     rating: 5
   },
-    {
-    name: "madhu",
-    company: "Bingen",
-    feedback: "The agency's ability to execute cross-platform campaigns seamlessly has brought us consistent  truly transformed our brand presence.success.",
-    rating: 5
-  },
-    {
-    name: "akshaya",
-    company: "Bingen",
-    feedback: "The agency's ability to execute cross-platform truly transformed our brand presence. truly transformed our brand presence. campaigns seamlessly has brought us consistent success.",
-    rating: 5
-  },
-    {
-    name: "yuvasree",
-    company: "Bingen",
-    feedback: "The agency's ability to execute cross-platform campaigns  truly transformed our brand presence. seamlessly has brought us consistent success.",
+  {
+    name: "varun",
+    feedback: "Line gave our website a full glow-up — it looks great and actually works. Their ad ideas were fresh and brought in real results. It finally feels like we’re showing up online the way we’re supposed to. They made the whole process smooth and stress-free.",
     rating: 5
   },
 ];
 
 const Portfolio = () => {
-  const [centerIndex, setCenterIndex] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const timeoutRef = useRef(null);
-
-  // Logo carousel functions
-  const handleLogoClick = (index) => setCenterIndex(index);
-  
-  const getLogoClass = (index) => {
-    const diff = (index - centerIndex + logos.length) % logos.length;
-    if (diff === 0) return "logo-card center";
-    if (diff === 1 || diff === logos.length - 1) return "logo-card side";
-    return "logo-card";
-  };
+  const testimonialTimeoutRef = useRef(null);
 
   // Auto-rotate testimonials
   useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(
+    resetTestimonialTimeout();
+    testimonialTimeoutRef.current = setTimeout(
       () => setCurrentTestimonial(prev => 
         (prev === testimonials.length - 1) ? 0 : prev + 1
       ),
-      2000
+      3000
     );
-    return () => resetTimeout();
+    return () => resetTestimonialTimeout();
   }, [currentTestimonial]);
 
-  const resetTimeout = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  const resetTestimonialTimeout = () => {
+    if (testimonialTimeoutRef.current) clearTimeout(testimonialTimeoutRef.current);
   };
 
   const handleDotClick = (index) => {
     setCurrentTestimonial(index);
-    resetTimeout();
+    resetTestimonialTimeout();
   };
 
   return (
@@ -90,20 +71,14 @@ const Portfolio = () => {
       {/* Brands Section */}
       <div className="brands-section">
         <h2 className="section-title">Brands We've Worked With</h2>
-        <div className="title-line"></div>
-        <div className="logo-row">
-          {logos.map((logo, i) => (
-            <div
-              key={i}
-              className={getLogoClass(i)}
-              onClick={() => handleLogoClick(i)}
-              onMouseEnter={() => handleLogoClick(i)}
-            >
-              <div className="logo-square">
+        <div className="logo-carousel-container">
+          <div className="logo-carousel-track">
+            {logos.map((logo, i) => (
+              <div key={`${logo.name}-${i}`} className="logo-item">
                 <img src={logo.image} alt={logo.name} />
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

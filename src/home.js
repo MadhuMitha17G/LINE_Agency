@@ -4,14 +4,13 @@ import Services from "./Services";
 import Teams from "./Teams";
 import Portfolio from "./Portfolio";
 import Footer from "./Footer";
-import ContactModal from "./ContactModal";
 import Loader from "./Loader";
 import bgImage from "./assets/LINE-BACKGROUND-01.png";
 import { motion } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 import { FiMenu, FiX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-
+import amplitude from "./amplitude"; // ➕ Amplitude import
 
 const Home = () => {
   const homeRef = useRef(null);
@@ -19,12 +18,10 @@ const Home = () => {
   const servicesRef = useRef(null);
   const teamsRef = useRef(null);
   const portfolioref = useRef(null);
- // const [showContact, setShowContact] = useState(false);
   const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const navigate = useNavigate();
-
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -34,6 +31,7 @@ const Home = () => {
   }, []);
 
   const scrollToSection = (ref) => {
+    amplitude.track("Nav Click", { target: ref.current?.id || "scroll" });
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -57,7 +55,10 @@ const Home = () => {
   return (
     <div className="home-container" style={backgroundStyle}>
       {/* Header */}
-      <header className="professional-header">
+      <header className="professional-header" style={{ position: 'sticky', top: 0, backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
+        <div className="menu-toggle" onClick={toggleMenu}>
+          {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+        </div>
         <div className="header-left">
           <img
             src="/LINE LOGO-WHITE.png"
@@ -65,22 +66,29 @@ const Home = () => {
             className="professional-logo"
           />
         </div>
-        <div className="menu-toggle" onClick={toggleMenu}>
-          {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-        </div>
-        <nav className={`header-right ${menuOpen ? "open" : ""}`}>
+        <nav className={`header-right ${menuOpen ? "open" : ""} hideformobile`}>
           <ul>
             <li onClick={() => scrollToSection(homeRef)}>Home</li>
             <li onClick={() => scrollToSection(servicesRef)}>Services</li>
             <li onClick={() => scrollToSection(teamsRef)}>Team</li>
             <li onClick={() => scrollToSection(portfolioref)}>Work</li>
-             <li onClick={() => navigate("/contact")}>Contact</li>
+            <li onClick={() => navigate("/contact")}>Contact</li>
           </ul>
         </nav>
       </header>
 
+      <nav className={`header-right ${menuOpen ? "open" : ""} hideForDesktop`}>
+        <ul>
+          <li onClick={() => scrollToSection(homeRef)}>Home</li>
+          <li onClick={() => scrollToSection(servicesRef)}>Services</li>
+          <li onClick={() => scrollToSection(teamsRef)}>Team</li>
+          <li onClick={() => scrollToSection(portfolioref)}>Work</li>
+          <li onClick={() => navigate("/contact")}>Contact</li>
+        </ul>
+      </nav>
+
       {/* Hero Section */}
-      <section className="hero-section" ref={homeRef}>
+      <section className="hero-section" ref={homeRef} id="home">
         <div className="custom-hero-container-left">
           <motion.h1
             className="custom-hero-title-left enlarged-hero-text"
@@ -90,7 +98,7 @@ const Home = () => {
           >
             Let's Draw the Line to
             <br />
-            Your Brand's{" "}
+            Your Brand's {" "}
             <span className="highlight-animated">
               <TypeAnimation
                 sequence={[
@@ -113,31 +121,6 @@ const Home = () => {
             </span>
           </motion.h1>
 
-          <motion.a
-            href="https://www.instagram.com/reel/DJbjVjDylR1/?igsh=cGg0a29uamZkazly"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="reel-button"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="reel-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="white"
-                width="18px"
-                height="18px"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <span className="reel-text">Watch our reel</span>
-          </motion.a>
-
           <motion.p
             className="custom-hero-description"
             initial={{ opacity: 0, y: 20 }}
@@ -145,15 +128,13 @@ const Home = () => {
             transition={{ delay: 0.9, duration: 0.8 }}
           >
             <br />
-            <br />
-            We craft meaningful connections between brands and people
-            where strategy meets creativity in every line.
+            We craft meaningful connections between brands and people where strategy meets creativity in every line.
           </motion.p>
         </div>
       </section>
 
       {/* Why Choose Section */}
-      <motion.section className="why-choose-section" ref={whyChooseRef}>
+      <motion.section className="why-choose-section" ref={whyChooseRef} id="why-choose">
         <div className="creative-header">
           <h2 className="section-title">Why choose <span className="line-highlight">LINE</span>?</h2>
         </div>
@@ -166,6 +147,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
+              onViewportEnter={() => amplitude.track("Section Viewed", { section: `WhyChoose-${item.letter}` })}
             >
               <div className="letter-circle">{item.letter}</div>
               <p className="letter-description">{item.text}</p>
@@ -173,36 +155,42 @@ const Home = () => {
           ))}
         </div>
       </motion.section>
-      <motion.div className="about-link-wrapper"
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  transition={{ duration: 0.5 }}
-  viewport={{ once: true }}
->
-  <button className="about-button" onClick={() => navigate("/about")}>Learn More About Us</button>
-</motion.div>
 
+      <motion.div className="about-link-wrapper"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <button className="about-button" onClick={() => {
+          amplitude.track("CTA Clicked", { location: "Home About Button" });
+          navigate("/about");
+        }}>Learn More About Us</button>
+      </motion.div>
 
       {/* Services Section */}
-      <motion.section id="services" className="content-section" ref={servicesRef}>
+      <motion.section id="services" className="content-section service-section-and-teams-patch" style={{ paddingBottom: 0 }} ref={servicesRef}
+        onViewportEnter={() => amplitude.track("Section Viewed", { section: "Services" })}
+      >
         <Services />
       </motion.section>
 
       {/* Teams Section */}
-      <motion.section id="teams" className="content-section" ref={teamsRef}>
+      <motion.section id="teams" className="content-section service-section-and-teams-patch" style={{ paddingTop: 0 }} ref={teamsRef}
+        onViewportEnter={() => amplitude.track("Section Viewed", { section: "Teams" })}
+      >
         <Teams />
       </motion.section>
 
       {/* Portfolio Section */}
-      <motion.section id="portfolio" className="content-section" ref={portfolioref}>
+      <motion.section id="portfolio" className="content-section" ref={portfolioref}
+        onViewportEnter={() => amplitude.track("Section Viewed", { section: "Portfolio" })}
+      >
         <Portfolio />
       </motion.section>
 
       {/* Footer */}
       <Footer />
-
-      {/* Contact Modal */}
-   
     </div>
   );
 };

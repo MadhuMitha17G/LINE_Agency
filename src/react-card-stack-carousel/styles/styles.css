@@ -11,7 +11,7 @@
 
 .rcsc-nav-container {
     position: absolute;
-    bottom: -44px;
+    bottom: -178px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -28,10 +28,15 @@
     margin: 0 6px;
     padding: 8px;
     cursor: pointer;
-    background-color: #374151;
     transition: background-color 0.3s;
 }
 
 .rcsc-nav-icon:hover {
     background-color: #1e293b;
+}
+
+@media(max-width: 600px) {
+    .rcsc-nav-container {
+        bottom: -44px;
+    }
 }

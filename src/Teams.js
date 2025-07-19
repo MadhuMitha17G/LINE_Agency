@@ -45,7 +45,7 @@ const Teams = () => {
   };
 
   return (
-    <div className="teams-container">
+    <div className="teams-container" style={{ marginTop: 0 }}>
       <h2 className="team-title">Our Team</h2>
 
       <h3 className="sub-title">Meet the Founders</h3>

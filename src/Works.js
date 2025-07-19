@@ -120,21 +120,21 @@ const WorksPage = () => {
         </button>
       </div>
        <div className="connect-section">
-        <div className="connect-line"></div>
-        <div className="connect-content">
-          <h3>Ready to take the next step?</h3>
-          <p>Let's connect and create something amazing together</p>
-          <button
-            className="connect-button"
-            onClick={() => navigate("Contact /")
-            }
-          >
-            Connect
-            <span className="connect-arrow">→</span>
-          </button>
-        </div>
-        <div className="connect-line"></div>
-      </div>
+  <div className="connect-line"></div>
+  <div className="connect-content">
+    <h3>Ready to take the next step?</h3>
+    <p>Let's connect and create something amazing together</p>
+    <button
+      className="connect-button"
+      onClick={() => navigate("/contact")}
+    >
+      Connect
+      <span className="connect-arrow">→</span>
+    </button>
+  </div>
+  <div className="connect-line"></div>
+</div>
+
 
       <Footer />
       {showContactModal && <ContactModal onClose={() => setShowContactModal(false)} />}

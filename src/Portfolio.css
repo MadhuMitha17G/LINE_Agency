@@ -1,252 +1,90 @@
-/* Portfolio Container */
-.portfolio-container {
-  padding: 80px 20px;
-  text-align: center;
-  background: white;
-}
-
-/* Logo Carousel Styles */
-.logo-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 0 40px;
-  max-width: 1400px;
-  margin: 0 auto 60px;
-}
-
-.logo-card {
-  transition: all 0.4s ease;
-  text-align: center;
-  cursor: pointer;
-  transform: scale(0.85);
-  opacity: 0.8;
-  border-radius: 8px;
-  padding: 20px;
-  min-width: 180px;
-  background: white;
-}
-
-.logo-card:hover {
-  transform: scale(0.95);
-  opacity: 1;
-}
-
-.logo-card.center {
-  transform: scale(1.1);
-  opacity: 1;
-  z-index: 5;
-}
-
-.logo-image-container {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-  margin-bottom: 15px;
-}
-
-.logo-card img {
-  max-width: 100%;
-  max-height: 80px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
-}
-
-.logo-card:hover img {
-  transform: scale(1.1);
-}
-
-/* Testimonial Slider Styles */
-.testimonials-section {
-  margin-top: 80px;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.testimonials-header h2 {
-  font-size: 2rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: black;
-  margin-bottom: 10px;
-}
-
-.rating-display {
-  margin: 30px 0;
-}
-
-.rating {
-  font-size: 3rem;
-  font-weight: bold;
-  color: black;
-  display: block;
-}
-
-.testimonial-title {
-  font-size: 1.5rem;
-  color: black;
-  margin: 20px 0 10px;
-}
-
-.testimonial-slider {
-  overflow: hidden;
-  max-width: 800px;
-  margin: 40px auto;
-  position: relative;
-}
-
-.testimonial-slides {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.testimonial-card {
-  min-width: 100%;
-  padding: 40px;
-  text-align: center;
-  background: white;
-  border-left: 4px solid #FF6B00;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.company-name {
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.stars {
-  color: #FF6B00;
-  font-size: 1.5rem;
-  margin: 15px 0;
-}
-
-.testimonial-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
-.dots-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  gap: 10px;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ddd;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dot.active {
-  background: #FF6B00;
-  transform: scale(1.2);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .logo-row {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  
-  .logo-card {
-    min-width: 120px;
-    padding: 15px;
-  }
-  
-  .testimonial-card {
-    padding: 30px 20px;
-  }
-}
 /* Portfolio.css */
 .portfolio-container {
-  padding: 80px 20px;
+  padding: 100px 20px;
   text-align: center;
-  background: black; /* Changed to black background */
+  color: white;
 }
 
 /* Brands Section */
+
 .brands-section {
-  margin-bottom: 80px;
+  margin-bottom: 120px; /* Increased space before testimonials */
+  overflow: hidden;
+  position: relative;
+  padding: 60px 0; /* Added vertical padding */
+}
+
+.brands-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: 0;
 }
 
 .section-title {
   font-size: 2.5rem;
   color: white;
-  margin-bottom: 15px;
+  margin-bottom: 40px; /* 40px gap below title */
   position: relative;
-  display: inline-block;
-  padding: 0 20px;
+  z-index: 1;
 }
 
-.title-line {
-  height: 4px;
-  width: 80px;
-  background: #FF6B00;
-  margin: 0 auto 40px;
+.logo-carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  margin: 100px 0; /* Added space around carousel */
 }
-
-.logo-row {
+.logo-carousel-track {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  animation: scroll 20s linear infinite;
+  width: calc(200px * 12);
+  padding: 20px 0;
 }
 
-.logo-card {
-  transition: all 0.3s ease;
-  cursor: pointer;
+.logo-item {
+  width: 180px;
+  height: 120px;
+  margin: 0 40px; /* 40px gap between logos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
-.logo-card.center {
+.logo-item:hover {
   transform: scale(1.1);
-  z-index: 2;
 }
 
-.logo-card.side {
-  transform: scale(0.95);
-  opacity: 0.9;
-}
-
-.logo-square {
-  width: 150px;
-  height: 150px;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-}
-
-.logo-card:hover .logo-square {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(255,107,0,0.5);
-}
-
-.logo-square img {
+.logo-item img {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
 }
 
-/* Testimonials Section */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-200px * 6));
+  }
+}
+
+/* Testimonials Section (unchanged) */
 .testimonials-section {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 40px auto 0; /* 40px gap above testimonials */
+  position: relative;
+  z-index: 1;
 }
 
 .testimonial-header {
@@ -263,7 +101,7 @@
 
 .testimonial-intro h3 {
   font-size: 1.8rem;
-  color: white; /* Changed to white text */
+  color: white;
   font-weight: 400;
   line-height: 1.4;
 }
@@ -278,7 +116,7 @@
 }
 
 .testimonial-card {
-  background: #111; /* Darker background for cards */
+  background: #111;
   padding: 40px;
   text-align: center;
   border-left: 4px solid #FF6B00;
@@ -294,7 +132,7 @@
 .feedback {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #ddd; /* Lighter text for better contrast */
+  color: #ddd;
   margin-bottom: 20px;
   font-style: italic;
 }
@@ -338,12 +176,17 @@
     flex-direction: column;
   }
   
-  .logo-row {
-    flex-wrap: wrap;
+  .logo-item {
+    width: 140px;
+    height: 90px;
+    margin: 0 15px;
   }
   
-  .logo-square {
-    width: 120px;
-    height: 120px;
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .testimonial-intro h3 {
+    font-size: 1.4rem;
   }
 }

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FiChevronRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import "./AboutUs.css";
+import amplitude from "./amplitude";
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -170,12 +171,15 @@ const AboutUs = () => {
           viewport={{ once: true }}
         >
           <h2 className="cta-title">Ready to draw the line to your brand's success?</h2>
-          <button 
-            className="cta-button"
-            onClick={() => navigate("/contact")}
-          >
-            Get in Touch <FiChevronRight />
-          </button>
+         <button 
+  className="cta-button"
+  onClick={() => {
+    amplitude.track("CTA Clicked", { location: "AboutUs Page" });
+    navigate("/contact");
+  }}
+>
+  Get in Touch <FiChevronRight />
+</button>
         </motion.div>
       </section>
     </div>
