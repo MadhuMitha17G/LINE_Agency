@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 60px;
+    font-family: sans-serif;
+    margin-top: 200vh; /* Push component down to test scroll */
+  }
+  
+  .letter {
+    position: relative;
+    margin: 0 50px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 
+      margin 1s ease,
+      transform 1s ease,
+      opacity 1s ease;
+  }
+  
+  .letter.animate {
+    margin: 0 15px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    border: 2px solid black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  
+  .letter.animate .circle {
+    width: 70px;
+    height: 70px;
+    opacity: 1;
+  }
+  

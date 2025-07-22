@@ -1,0 +1,88 @@
+.teams-container {
+  padding: 60px 10%;
+  background-color:transparent;
+  color: white;
+   margin-top: 100px;
+  text-align: center;
+  min-height: 100vh;
+ margin-left: 0.5cm; /* shifts the whole section left by 2cm */
+}
+
+.team-title {
+  font-size: 3rem;
+  color: #FF6B00;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.sub-title {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  text-align: center; /* centered heading */
+}
+
+.card-row {
+  display: flex;
+  justify-content: center;
+  gap: 2.5cm; /* space between photos */
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 250px;
+  height: 300px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-back {
+  background-color: #FF6B00;
+  color: black;
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.member-name {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #FFFFFF;
+}

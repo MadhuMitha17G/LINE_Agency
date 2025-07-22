@@ -1,0 +1,100 @@
+.container {
+  background: lightblue;
+  cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 39 39,
+    auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+.deck {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.deck > div {
+  background-color: white;
+  background-size: auto 85%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 45vh;
+  max-width: 150px;
+  height: 85vh;
+  max-height: 285px;
+  will-change: transform;
+  border-radius: 10px;
+  box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
+}
+.container {
+  position: relative;
+  width: 300px;
+  height: 450px;
+  margin: 0 auto;
+}
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.card {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  will-change: transform;
+  cursor: none;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deck-container {
+  position: relative;
+  width: 300px;
+  height: 450px;
+}
+
+.deck {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  cursor: none;
+}
+
+.deck > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(143, 13, 13, 0.3);
+}

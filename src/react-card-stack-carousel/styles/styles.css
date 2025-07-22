@@ -1,0 +1,42 @@
+.rcsc-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    perspective: 90em;
+}
+
+.rcsc-item {
+    position: absolute;
+}
+
+.rcsc-nav-container {
+    position: absolute;
+    bottom: -178px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.rcsc-nav-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 6px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.rcsc-nav-icon:hover {
+    background-color: #1e293b;
+}
+
+@media(max-width: 600px) {
+    .rcsc-nav-container {
+        bottom: -44px;
+    }
+}

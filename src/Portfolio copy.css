@@ -1,0 +1,278 @@
+.portfolio-container {
+  padding: 50px 0;
+  text-align: center;
+  overflow: visible; /* Changed to visible to prevent clipping */
+  background: radial-gradient(circle at center, rgba(30, 30, 30, 0.9) 0%, rgba(0, 0, 0, 1) 70%);
+}
+
+.portfolio-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Reduced gap to fit all logos */
+  flex-wrap: nowrap;
+  padding: 0 20px; /* Added padding to prevent edge clipping */
+  animation: parallax 20s linear infinite;
+  transition: all 0.5s ease-in-out;
+}
+
+.logo-card {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  transform: scale(0.8);
+  opacity: 0.6;
+  border-radius: 16px;
+  padding: 20px;
+  min-width: 200px; /* Ensure enough space for logos */
+}
+
+.logo-card:hover {
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.5); /* Orange glow on hover */
+  opacity: 1;
+}
+
+.logo-card.center {
+  transform: scale(1.4); /* Increased scale for more "pop" */
+  opacity: 1;
+  z-index: 5;
+  background: rgba(255, 107, 0, 0.1); /* Subtle orange background for emphasis */
+}
+
+.logo-card.side {
+  transform: scale(1);
+  opacity: 0.9;
+  z-index: 3;
+}
+
+.logo-card.far {
+  transform: scale(0.8);
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.logo-card.outer {
+  transform: scale(0.7);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.logo-card img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-card:hover img {
+  transform: scale(1.1);
+}
+
+.logo-card p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Parallax animation */
+@keyframes parallax {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px); /* Reduced to prevent clipping */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Fade-in effect */
+.fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-row {
+    gap: 15px;
+    padding: 0 15px;
+  }
+  .logo-card img {
+    width: 120px;
+  }
+  .logo-card {
+    min-width: 150px;
+  }
+  .logo-card.center {
+    transform: scale(1.3);
+  }
+  .logo-card.side {
+    transform: scale(0.9);
+  }
+  .logo-card.far {
+    transform: scale(0.7);
+  }
+  .logo-card.outer {
+    transform: scale(0.6);
+  }
+}.portfolio-container {
+  padding: 50px 0;
+  text-align: center;
+  overflow: visible;
+  background: radial-gradient(circle at center, rgba(30, 30, 30, 0.9) 0%, rgba(0, 0, 0, 1) 70%);
+}
+
+.portfolio-title {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Tight gap for six logos */
+  flex-wrap: nowrap;
+  padding: 0 60px; /* Generous padding for visibility */
+  max-width: 1200px; /* Constrain width */
+  margin: 0 auto; /* Center row */
+  transition: all 0.5s ease-in-out;
+}
+
+.logo-card {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  text-align: center;
+  cursor: pointer;
+  transform: scale(0.7);
+  opacity: 0.5;
+  border-radius: 16px;
+  padding: 15px;
+  min-width: 180px; /* Smaller width */
+}
+
+.logo-card:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.8); /* White shiny glow */
+  opacity: 1;
+}
+
+.logo-card.center {
+  transform: scale(1.5);
+  opacity: 1;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.15); /* White highlight */
+  animation: pulse 1.5s ease-in-out infinite; /* Subtle pulse */
+}
+
+.logo-card.side {
+  transform: scale(1);
+  opacity: 0.8;
+  z-index: 3;
+}
+
+.logo-card.far {
+  transform: scale(0.8);
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.logo-card.outer {
+  transform: scale(0.7);
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.logo-card img {
+  width: 140px; /* Smaller images */
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-card:hover img {
+  transform: scale(1.1);
+}
+
+.logo-card p {
+  margin-top: 8px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+}
+
+/* Pulse animation for center logo */
+@keyframes pulse {
+  0% { transform: scale(1.5); }
+  50% { transform: scale(1.55); }
+  100% { transform: scale(1.5); }
+}
+
+/* Fade-in effect */
+.fade-in {
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .logo-row {
+    gap: 8px;
+    padding: 0 20px;
+  }
+  .logo-card img {
+    width: 100px;
+  }
+  .logo-card {
+    min-width: 130px;
+    padding: 10px;
+  }
+  .logo-card.center {
+    transform: scale(1.3);
+  }
+  .logo-card.side {
+    transform: scale(0.9);
+  }
+  .logo-card.far {
+    transform: scale(0.7);
+  }
+  .logo-card.outer {
+    transform: scale(0.6);
+  }
+  .logo-card p {
+    font-size: 0.8rem;
+  }
+}
