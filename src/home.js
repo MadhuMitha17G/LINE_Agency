@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import amplitude from "./amplitude"; // ➕ Amplitude import
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
+import linelogo from './assets/linelogonew2.svg'
 
 const Home = () => {
   const homeRef = useRef(null);
@@ -71,7 +72,7 @@ const Home = () => {
         <Container fluid>
         <Navbar.Brand href="/">
   <img
-    src="/LINE LOGO-WHITE.png"
+    src={linelogo}
     alt="LINE Agency Logo"
     className="professional-logo"
   />
