@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import amplitude from "./amplitude";
 
+
 const ContactPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -28,6 +29,63 @@ const ContactPage = () => {
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const saveToGoogleSheet = async (formData) => {
+ try {
+    const formBody = new URLSearchParams(formData).toString();
+
+    const response = await fetch('https://script.google.com/macros/s/AKfycbymfhsNnPWV69cSU59YVDh2UGHDsESZwbs1cl4sqoT0uNSByngWl3D6Jweqfm1ck2Vb/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formBody,
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to save data');
+    }
+
+    console.log('Data saved successfully');
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+
+  const sendEmail = async (formData) => {
+  const data = {
+    service_id: 'service_0k0gevh',
+    template_id: 'template_y4h2ysm',
+    user_id: 'AXFyYLS02xzX8v3tF',
+    template_params: {
+      name: formData.name,
+      email: formData.email,
+      contact: formData.contact,
+      service: formData.service,
+      brand: formData.brand
+    },
+  };
+
+  console.log("The Payload ", data)
+  try {
+    const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      alert('Your mail is sent!');
+    } else {
+      const errorData = await response.json();
+      alert('Oops... ' + JSON.stringify(errorData));
+    }
+  } catch (error) {
+    alert('Oops... ' + error.message);
+  }
+};
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -38,13 +96,17 @@ const ContactPage = () => {
       service: formData.service,
     });
     try {
-      const res = await fetch("http://localhost:5000/submit-form", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      alert(data.message || "Submitted successfully!");
+      console.log("The form Data ", formData)
+      await sendEmail(formData);
+      await saveToGoogleSheet(formData);
+      // const res = await fetch("http://localhost:5000/submit-form", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify(formData),
+      // });
+      // const data = await res.json();
+      // alert(data.message || "Submitted successfully!");
+      
       setFormData({
         name: "",
         email: "",
